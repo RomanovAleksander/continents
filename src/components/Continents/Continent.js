@@ -10,7 +10,7 @@ export const Continent = ({ continent }) => {
   const [enabled, setEnabled] = React.useState(false);
   const { data } = useQuery(GET_COUNTRIES, {variables: { code }});
 
-  useEffect(async () => {
+  useEffect(() => {
     enabled ? setCountries(data.continents[0].countries) : setCountries([]);
   }, [enabled]);
 
@@ -18,7 +18,7 @@ export const Continent = ({ continent }) => {
     <>
       <li onClick={() => setEnabled(!enabled)}>{name}</li>
       {!!countries.length && (
-        <ContinentsContext.Provider value={{ setEnabled, setCountries }}>
+        <ContinentsContext.Provider value={{ setEnabled }}>
           <Countries countries={countries} />
         </ContinentsContext.Provider>
       )}
